@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+<div class="container">
+    <h1>{{ question.question_text }}</h1>
+
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <li>
+            {{ choice.choice_text }}
+            {% if selected_choice and choice.id == selected_choice.id %}
+                <span style="color: #4CAF50; font-weight: bold; margin-left: 10px;">✓</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:index' %}">Anketlere dön</a>
+</div>
